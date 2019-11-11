@@ -5,11 +5,12 @@ ESP8266 / ESP32 / Arduino driver lib for using the great TI C1101 transceiver
 
 The Texas Instruments CC1101 is a very versatile, high quality and cheap transceiver, supporting a wide range of frequencies and modulations.
 Ready-to-use CC1101 modules are as cheap as 5.00€ and at the same time significantly better than simple 433MHz receiver and transmitter modules.
-The confusing part about these CC1101s is, they are actually kind of overpowered, providing logic for sync word detection, CRC checks, packet formats
-and so on. However, it's still possible to use them as simple digital transceivers, giving them a minimum of configuration and letting the MCU (like our ESP8266/ESP32/Arduino) do all the work.
-That's especially useful, if you want to transmit or decode non-standard packet formats. Like the vast majority of us, I suppose ;)
 
-This library aims to help developers using the chip without having to read the whole 105 pages [datasheet](http://www.ti.com/lit/ds/symlink/cc1101.pdf) first. 
+The confusing part about these CC1101s is, they are actually kind of over powered, providing logic for sync word detection, CRC checks, packet formats
+and so on. However, it's still possible to use them as simple digital transceivers, giving them a minimum of configuration and letting the MCU (like our ESP8266/ESP32/Arduino) do all the work.
+Especially useful, if you want to transmit or decode non-standard packet formats. Like the vast majority of us, I suppose ;)
+
+This library aims to help developers using the CC1101 module without having to read the whole 105 pages [datasheet](http://www.ti.com/lit/ds/symlink/cc1101.pdf) first. 
 
 ## Features
 * High level access to important features, like switching frequencies, switching between IDLE/TX/RX, sending / receiving data etc.
