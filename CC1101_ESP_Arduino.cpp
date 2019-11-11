@@ -160,7 +160,7 @@ void CC1101::regConfigSettings() {
 	//spiWriteReg(CC1101_DEVIATN,  0x15);
 	//spiWriteReg(CC1101_FREND1,   0x56);
 	spiWriteReg(CC1101_FREND0,   0b00010001);
-	spiWriteReg(CC1101_MCSM0 ,   0b00010100);
+	spiWriteReg(CC1101_MCSM0 ,   0b00011000);
 	spiWriteReg(CC1101_FOCCFG,   0b00010100);
 	//spiWriteReg(CC1101_BSCFG,    0x1C);
 	//spiWriteReg(CC1101_AGCCTRL2, 0xC7);
