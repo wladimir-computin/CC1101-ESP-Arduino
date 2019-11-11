@@ -26,7 +26,7 @@ This library aims to help developers using the chip without having to read the w
 I develop this library in my free time. Some features are not done yet.
 For now, only OOK modulation and only asynchronous serial mode are supported.
 
-## Progress
+### Progress
 * Implemented and test low level SPI communication
 * Switch between RX, TX and IDLE mode
 * Read and write data
@@ -37,7 +37,7 @@ For now, only OOK modulation and only asynchronous serial mode are supported.
 * Set Channel and channel spacing (optional) at runtime
 * Perform reset of module
 
-## TODO
+### TODO
 * SLEEP mode
 * 2-FSK, 4-FSK, GFSK, MSK and ASK support
 * synchronous serial mode
@@ -46,9 +46,6 @@ For now, only OOK modulation and only asynchronous serial mode are supported.
 
 ## Examples
 Look into [/examples](https://github.com/wladimir-computin/CC1101-ESP-Arduino/blob/master/examples/) :)
-
-## Defaults
-todo
 
 ## Wiring
 Connect SPI_SCK, SPI_MISO, SPI_MOSI to the corresponding SPI Pins on your board.
