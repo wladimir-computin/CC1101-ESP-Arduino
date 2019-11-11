@@ -159,12 +159,6 @@ class CC1101 {
 		void spiEnd();
 		void spiStartTransaction();
 		void spiEndTransaction();
-		void spiStrobe(uint8_t strobe);
-		uint8_t spiReadReg(uint8_t addr);
-		uint8_t spiReadStatus(uint8_t addr);
-		void spiReadRegBurst(uint8_t addr, uint8_t* buffer, uint8_t buffer_len);
-		void spiWriteReg(uint8_t addr, uint8_t value);
-		void spiWriteRegBurst(uint8_t addr, const uint8_t* buffer, uint8_t buffer_len);
 		
 		void regConfigSettings();
 
@@ -193,6 +187,7 @@ class CC1101 {
 		CC1101(int gdo0, int gdo2);
 		CC1101(int sck, int miso, int mosi, int cs, int gdo0);
 		CC1101(int sck, int miso, int mosi, int cs, int gdo0, int gdo2);
+		
 		void init();
 		void softReset();
 		void hardReset ();
@@ -203,8 +198,16 @@ class CC1101 {
 		void setChannel(uint8_t channel);
 		void setChannelSpacing(int spacing_hz);
 		void setTXPwr(TX_DBM value);
-		void setRxBW(uint8_t RxBW);
+		void setRxBW(RX_BW_KHZ RxBW);
 		void setDataRate(unsigned long baud);
+		
+		void spiStrobe(uint8_t strobe);
+		uint8_t spiReadReg(uint8_t addr);
+		uint8_t spiReadStatus(uint8_t addr);
+		void spiReadRegBurst(uint8_t addr, uint8_t* buffer, uint8_t buffer_len);
+		void spiWriteReg(uint8_t addr, uint8_t value);
+		void spiWriteRegBurst(uint8_t addr, const uint8_t* buffer, uint8_t buffer_len);
+		
 		uint8_t receiveData(uint8_t *rxBuffer);
 };
 

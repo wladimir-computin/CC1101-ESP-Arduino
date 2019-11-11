@@ -233,7 +233,7 @@ void CC1101::setChannelSpacing(int spacing_hz){
 	spiWriteReg(CC1101_MDMCFG0, chsp_m);
 }
 
-void CC1101::setRxBW(uint8_t RxBW){
+void CC1101::setRxBW(RX_BW_KHZ RxBW){
 	if(RxBW < 16){
 		uint8_t drate_e = spiReadReg(CC1101_MDMCFG4) & 0b00001111;
 		uint8_t rbw = (RxBW << 4) | drate_e;
