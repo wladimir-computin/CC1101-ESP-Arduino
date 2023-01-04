@@ -25,7 +25,7 @@ This library aims to help developers using the CC1101 module without having to r
 
 ## Limitations
 I develop this library in my free time. Some features are not done yet.
-For now, only OOK modulation and only asynchronous serial mode are supported.
+For now only asynchronous serial mode is supported.
 
 ### Progress
 * Implemented and test low level SPI communication
@@ -37,7 +37,7 @@ For now, only OOK modulation and only asynchronous serial mode are supported.
 * Set RX bandwith at runtime
 * Set Channel and channel spacing (optional) at runtime
 * Perform reset of module
-* 2-FSK, 4-FSK, GFSK, MSK and ASK support
+* 2-FSK, 4-FSK, GFSK, MSK and ASK modulation support
 
 ### TODO
 * SLEEP mode
