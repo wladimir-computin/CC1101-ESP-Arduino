@@ -197,6 +197,7 @@ void CC1101::hardReset(){
 	spiStartTransaction();
 	SPI.transfer(CC1101_SRES);
 	spiEndTransaction();
+	spiStrobe(CC1101_SCAL);
 }
 
 void CC1101::softReset(){
@@ -254,6 +255,32 @@ void CC1101::setDataRate(unsigned long baud){
 	}
 }
 
+void CC1101::setModulation(MOD_FORMAT mod){
+	uint8_t data_old = spiReadReg(CC1101_MDMCFG2) & 0b10001111;
+	uint8_t data_new = ((uint8_t)mod << 4) | data_old;
+	spiWriteReg(CC1101_MDMCFG2, data_new);
+}
+
+void CC1101::setDeviationHZ(int deviation_hz){
+	uint8_t deviation_m = 0;
+	uint8_t deviation_e = 0;
+	int closest = INT_MAX;
+	for(uint8_t test_e = 0; test_e < 8; test_e++){
+		for(uint8_t test_m = 0; test_m < 8; test_m++){
+			int test_deviation = (crystal/pow(2,17))*(8+test_m)*pow(2, test_e);
+			int diff = abs(deviation_hz - test_deviation);
+			if (diff < closest){
+				closest = diff;
+				deviation_m = test_m;
+				deviation_e = test_e;
+			}
+		}
+	}
+	uint8_t data_new = (deviation_e << 4) | deviation_m;
+	Serial.println(data_new);
+	spiWriteReg(CC1101_DEVIATN, data_new);
+}
+
 void CC1101::setChannel(uint8_t channel){
 	spiWriteReg(CC1101_CHANNR, channel);
 }
@@ -278,13 +305,13 @@ void CC1101::setRx(){;
 	}
 }
 
-uint8_t CC1101::receiveData(uint8_t *rxBuffer){
+uint8_t CC1101::receiveData(uint8_t *rxBuffer, uint8_t len){
 	uint8_t size;
 	uint8_t status[2];
 	
 	if(spiReadStatus(CC1101_RXBYTES) & BYTES_IN_RXFIFO) {
 		size=spiReadReg(CC1101_RXFIFO);
-		spiReadRegBurst(CC1101_RXFIFO,rxBuffer,size);
+		spiReadRegBurst(CC1101_RXFIFO,rxBuffer,len);
 		spiReadRegBurst(CC1101_RXFIFO,status,2);
 		spiStrobe(CC1101_SFRX);
 		return size;
@@ -292,6 +319,14 @@ uint8_t CC1101::receiveData(uint8_t *rxBuffer){
 		spiStrobe(CC1101_SFRX);
 		return 0;
 	}
+}
+
+uint8_t CC1101::getPartnum(){
+	return spiReadStatus(CC1101_PARTNUM);
+}
+
+uint8_t CC1101::getVersion(){
+	return spiReadStatus(CC1101_VERSION);
 }
 
 uint8_t CC1101::log2(double value){

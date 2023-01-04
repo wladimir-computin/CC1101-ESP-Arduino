@@ -37,10 +37,10 @@ For now, only OOK modulation and only asynchronous serial mode are supported.
 * Set RX bandwith at runtime
 * Set Channel and channel spacing (optional) at runtime
 * Perform reset of module
+* 2-FSK, 4-FSK, GFSK, MSK and ASK support
 
 ### TODO
 * SLEEP mode
-* 2-FSK, 4-FSK, GFSK, MSK and ASK support
 * synchronous serial mode
 * FIFO mode
 * Packet handling features
@@ -96,6 +96,10 @@ void setChannelSpacing(int spacing_hz);
 void setTXPwr(TX_DBM value);
 void setRxBW(RX_BW_KHZ RxBW);
 void setDataRate(unsigned long baud);
+void setModulation(MOD_FORMAT mod);
+void setDeviationHZ(int deviation_hz); //1586hz - 380859hz
+uint8_t getPartnum();
+uint8_t getVersion();
 ```
 
 ### Low level methods:
@@ -138,6 +142,14 @@ enum RX_BW_KHZ {
 	RX_BW_81_KHZ = 13,
 	RX_BW_68_KHZ = 14,
 	RX_BW_58_KHZ = 15
+};
+
+enum MOD_FORMAT {
+	FSK2 = 0,
+	GFSK = 1,
+	ASK_OOK = 3,
+	FSK4 = 4,
+	MSK = 7
 };
 ```
 

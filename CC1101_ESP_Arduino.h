@@ -152,6 +152,15 @@ enum RX_BW_KHZ {
 	RX_BW_58_KHZ = 15
 };
 
+enum MOD_FORMAT {
+	FSK2 = 0,
+	GFSK = 1,
+	ASK_OOK = 3,
+	FSK4 = 4,
+	MSK = 7
+};
+
+
 class CC1101 {
 	
 	private:
@@ -200,6 +209,10 @@ class CC1101 {
 		void setTXPwr(TX_DBM value);
 		void setRxBW(RX_BW_KHZ RxBW);
 		void setDataRate(unsigned long baud);
+		void setModulation(MOD_FORMAT mod);
+		void setDeviationHZ(int deviation_hz); //1586hz - 380859hz
+		uint8_t getPartnum();
+		uint8_t getVersion();
 		
 		void spiStrobe(uint8_t strobe);
 		uint8_t spiReadReg(uint8_t addr);
@@ -208,7 +221,7 @@ class CC1101 {
 		void spiWriteReg(uint8_t addr, uint8_t value);
 		void spiWriteRegBurst(uint8_t addr, const uint8_t* buffer, uint8_t buffer_len);
 		
-		uint8_t receiveData(uint8_t *rxBuffer);
+		uint8_t receiveData(uint8_t *rxBuffer, uint8_t len);
 };
 
 #endif
