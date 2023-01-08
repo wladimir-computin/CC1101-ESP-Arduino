@@ -48,6 +48,14 @@ For now only asynchronous serial mode is supported.
 ## Examples
 Look into [/examples](https://github.com/wladimir-computin/CC1101-ESP-Arduino/blob/master/examples/) :)
 
+* Simple_Sender.ino
+	* Send the following waveform. One pulse is 375ms (2666 baud).
+	* ![image](https://github.com/wladimir-computin/CC1101-ESP-Arduino/blob/master/img/ook_waveform.png?raw=true)
+
+
+* Listen_and_Print.ino
+	* Async receive
+
 ## Wiring
 Connect SPI_SCK, SPI_MISO, SPI_MOSI to the corresponding SPI Pins on your board.
 SPI_CS can be any pin usable as INPUT and OUTPUT, but most boards have a default one.
