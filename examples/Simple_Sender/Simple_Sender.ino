@@ -35,7 +35,6 @@ void setup(){
 	cc1101.setIdle();
 }
 
-// Print received data every 5 seconds, set CC1101 into IDLE mode while printing
 void loop(){
 	
 }
