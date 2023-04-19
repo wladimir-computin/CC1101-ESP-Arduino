@@ -37,7 +37,7 @@ CC1101::CC1101(int gdo0, int gdo2){
 }
 
 CC1101::CC1101(int sck, int miso, int mosi, int cs, int gdo0){
-	CC1101(sck, miso, cs, gdo0, -1);
+	CC1101(sck, miso, mosi, cs, gdo0, -1);
 }
 
 CC1101::CC1101(int sck, int miso, int mosi, int cs, int gdo0, int gdo2){
