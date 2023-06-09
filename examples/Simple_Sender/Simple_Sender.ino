@@ -21,7 +21,7 @@ void setup(){
 	Serial.begin(115200);
 	bitBanger.begin(2666, -1, RADIO_INPUT_PIN);
 	cc1101.init();
-	printfDebug("CC1101: 0x%02x, version: 0x%02x\n", cc1101.getPartnum(), cc1101.getVersion());
+	Serial.printf("CC1101: 0x%02x, version: 0x%02x\n", cc1101.getPartnum(), cc1101.getVersion());
 	cc1101.setMHZ(433.92);
 	cc1101.setTXPwr(TX_PLUS_10_DBM);
 	cc1101.setDataRate(10000);
