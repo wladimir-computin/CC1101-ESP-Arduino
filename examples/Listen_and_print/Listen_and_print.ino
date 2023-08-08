@@ -13,7 +13,7 @@ CC1101 cc1101(SPI_SCK, SPI_MISO, SPI_MOSI, SPI_CS, RADIO_INPUT_PIN, RADIO_OUTPUT
 volatile long last_micros;
 String buffer;
 
-void radioHandlerOnChange() {
+ICACHE_RAM_ATTR void radioHandlerOnChange() {
 	int delta_micros = micros() - last_micros;
 	
 	bool input = digitalRead(RADIO_OUTPUT_PIN);
