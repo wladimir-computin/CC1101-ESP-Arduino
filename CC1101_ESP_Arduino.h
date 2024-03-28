@@ -19,7 +19,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <limits.h>
+#include <climits.h>
 
 
 //***************************************CC1101 define**************************************************//
