@@ -19,7 +19,11 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include <climits.h>
+#ifdef ARDUINO_ARCH_ESP32
+	#include <limits.h>
+#else
+	#include <climits.h>
+#endif
 
 
 //***************************************CC1101 define**************************************************//
