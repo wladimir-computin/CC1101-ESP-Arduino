@@ -1,0 +1,13 @@
+{
+  "name": "CC1101-ESP-Arduino",
+  "version": "2.0",
+  "author": "wladimir-computin",
+  "maintainer": "David W. <davidw.software@gmail.com>",
+  "sentence": "CryptoIoT Core",
+  "paragraph": "CC1101-ESP-Arduino library for interfacing with the TI CC1101 transceiver.",
+  "category": "Communication",
+  "platforms": ["esp8266", "esp32"],
+  "homepage": "https://example.org/",
+  "dot_a_linkage": true,
+  "frameworks": ["arduino", "esp8266-nonos-sdk", "espidf"]
+}
