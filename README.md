@@ -85,8 +85,6 @@ In other words, you can't use the more flexible serial mode.
 
 ### Constructors:
 ```cpp
-CC1101(int gdo0);
-CC1101(int gdo0, int gdo2);
 CC1101(int sck, int miso, int mosi, int cs, int gdo0);
 CC1101(int sck, int miso, int mosi, int cs, int gdo0, int gdo2);
 ```

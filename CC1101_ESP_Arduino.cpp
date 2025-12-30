@@ -18,29 +18,7 @@
 
 /****************************************************************/
 
-CC1101::CC1101(int gdo0){
-	CC1101(gdo0, -1);
-}
-
-CC1101::CC1101(int gdo0, int gdo2){
-	#if defined __AVR_ATmega168__ || defined __AVR_ATmega328P__
-	CC1101(13, 12, 11, 10, gdo0, gdo2);
-	#elif defined __AVR_ATmega1280__ || defined __AVR_ATmega2560__
-	CC1101(52, 50, 51, 53, gdo0, gdo2);
-	#elif defined ESP8266
-	CC1101(14, 12, 13, 15, gdo0, gdo2);
-	#elif defined ESP32
-	CC1101(18, 19, 23,  5, gdo0, gdo2);
-	#else
-	CC1101(13, 12, 11, 10, gdo0, gdo2);
-	#endif
-}
-
-CC1101::CC1101(int sck, int miso, int mosi, int cs, int gdo0){
-	CC1101(sck, miso, mosi, cs, gdo0, -1);
-}
-
-CC1101::CC1101(int sck, int miso, int mosi, int cs, int gdo0, int gdo2){
+CC1101::CC1101(int8_t sck, int8_t miso, int8_t mosi, int8_t cs, int8_t gdo0, int8_t gdo2){
 	SCK_PIN = sck;
 	MISO_PIN = miso;
 	MOSI_PIN = mosi;
@@ -58,8 +36,10 @@ void CC1101::spiStart(){
 	if(GDO2 != -1){
 		pinMode(GDO0, OUTPUT);
 		pinMode(GDO2, INPUT);
+	} else {
+		pinMode(GDO0, INPUT);
 	}
-	
+
 	#if defined ESP32
 	SPI.begin(SCK_PIN, MISO_PIN, MOSI_PIN, SS_PIN);
 	#else
@@ -75,7 +55,7 @@ void CC1101::spiStartTransaction(){
 	SPI.beginTransaction(spiSettings);
 	digitalWrite(SS_PIN, LOW);
 	while(digitalRead(MISO_PIN)){
-		yield();
+	 	yield();
 	};
 }
 
@@ -128,7 +108,7 @@ void CC1101::spiReadRegBurst(uint8_t addr, uint8_t *buffer, uint8_t buffer_len){
 void CC1101::spiWriteReg(uint8_t addr, uint8_t value){
 	spiStartTransaction();
 	SPI.transfer(addr);
-	SPI.transfer(value); 
+	SPI.transfer(value);
 	spiEndTransaction();
 }
 
@@ -182,6 +162,7 @@ void CC1101::regConfigSettings() {
 	}
 	
 	spiWriteReg(CC1101_PKTCTRL0, 0b00110010);
+
 	//spiWriteReg(CC1101_PKTCTRL1, 0x04);
 
 	//spiWriteReg(CC1101_PKTCTRL0, 0x32);

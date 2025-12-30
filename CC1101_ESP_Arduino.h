@@ -14,8 +14,7 @@
  *  CC1101 ESP32/ESP8266/Arduino Driver. Mod by wladimir-computin.
  * 
  */
-#ifndef CC1101_ESP_ARDUINO_h
-#define CC1101_ESP_ARDUINO_h
+#pragma once
 
 #include <Arduino.h>
 #include <SPI.h>
@@ -187,20 +186,17 @@ class CC1101 {
 		double crystal_mhz = 26.0;
 		unsigned long crystal = crystal_mhz * pow(10,6);
 
-		int SCK_PIN;
-		int MISO_PIN;
-		int MOSI_PIN;
-		int SS_PIN;
-		int GDO0; //TX or TX/RX
-		int GDO2; //RX
+		int8_t SCK_PIN;
+		int8_t MISO_PIN;
+		int8_t MOSI_PIN;
+		int8_t SS_PIN;
+		int8_t GDO0; //TX or TX/RX
+		int8_t GDO2; //RX
 		
 		SPISettings spiSettings = SPISettings(10000000, MSBFIRST, SPI_MODE0);
 
 	public:
-		CC1101(int gdo0);
-		CC1101(int gdo0, int gdo2);
-		CC1101(int sck, int miso, int mosi, int cs, int gdo0);
-		CC1101(int sck, int miso, int mosi, int cs, int gdo0, int gdo2);
+		CC1101(int8_t sck, int8_t miso, int8_t mosi, int8_t cs, int8_t gdo0, int8_t gdo2=-1);
 		
 		void init();
 		void softReset();
@@ -228,5 +224,3 @@ class CC1101 {
 		
 		uint8_t receiveData(uint8_t *rxBuffer, uint8_t len);
 };
-
-#endif
